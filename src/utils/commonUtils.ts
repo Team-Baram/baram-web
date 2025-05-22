@@ -9,7 +9,3 @@ export const base64urlEncode = (str: string) => {
 export const getAccessTokenCookieName = () => {
   return base64urlEncode(process.env.NEXT_PUBLIC_BARAM_ACCESS_TOKEN_NAME)
 }
-
-export const getRefreshTokenCookieName = () => {
-  return base64urlEncode(process.env.NEXT_PUBLIC_BARAM_REFRESH_TOKEN_NAME)
-}
