@@ -1,5 +1,6 @@
 import { Stack, Typography } from '@mui/material'
-import { BasicContainer, ExitButtons } from '@/components'
+import { BasicContainer } from '@/components'
+import { ExitButtons } from './components'	
 
 export default async function ExitPage() {
   return (

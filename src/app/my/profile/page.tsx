@@ -1,7 +1,7 @@
 'use server'
 
-import { MyPageContainer, ProfileSetting } from '@/components'
-import { ErrorBoundary } from '@/components'
+import { MyPageContainer, ErrorBoundary } from '@/components'
+import { ProfileSetting } from './components'
 
 export default async function ProfilePage() {
   return (
