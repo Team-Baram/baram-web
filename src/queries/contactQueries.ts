@@ -4,7 +4,7 @@ import { QUERY_KEYS } from '@/queries'
 import { ExternalAPI } from '@/utils'
 
 export const useFetchContactsQuery = () => {
-	const {} = useQuery({
+	const { isLoading, isError, error, data } = useQuery({
 		queryKey: [QUERY_KEYS.FETCH_CONTACT],
 		queryFn: async () => {
 			const response = await ExternalAPI.get('/api/contact')
