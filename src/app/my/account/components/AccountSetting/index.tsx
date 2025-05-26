@@ -1,19 +1,12 @@
 'use client'
 
 import Link from 'next/link'
-import {
-  Box,
-  IconButton,
-  Stack,
-  Typography,
-  Divider,
-  Button,
-} from '@mui/material'
+import { Box, IconButton, Stack, Typography, Divider, Button } from '@mui/material'
 import PersonOutlineIcon from '@mui/icons-material/PersonOutline'
 import PlayArrowIcon from '@mui/icons-material/PlayArrow'
 import { useIsRestoring } from '@tanstack/react-query'
 import { useFetchAccountQuery } from '@/queries'
-import { Spinner } from '@/components' 
+import { Spinner } from '@/components'
 import NicknameForm from './NicknameForm'
 
 export default function AccountSetting() {
@@ -21,9 +14,7 @@ export default function AccountSetting() {
   const { isLoading, isError, error, data } = useFetchAccountQuery()
 
   if (isRestoring || isLoading) {
-    return (
-			<Spinner />
-    )
+    return <Spinner />
   }
 
   if (isError) {

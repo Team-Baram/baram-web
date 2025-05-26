@@ -23,7 +23,7 @@ export default function CustomSaveDialog({
   disabledBtn = false,
   //fullScreen,
 }: CustomSaveDialogProps) {
-	const t = useTranslations('Common')
+  const t = useTranslations('Common')
 
   return (
     <Dialog
@@ -39,10 +39,10 @@ export default function CustomSaveDialog({
         {children}
         <Stack mt={2} spacing={1} direction='row' sx={{ justifyContent: 'flex-end' }}>
           <Button variant='outlined' onClick={cancel}>
-						{t('cancel')}
+            {t('cancel')}
           </Button>
           <Button variant='contained' disabled={disabledBtn} onClick={save}>
-						{t('save')}
+            {t('save')}
           </Button>
         </Stack>
       </DialogContent>

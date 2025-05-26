@@ -13,7 +13,7 @@ export default function Error({
   error: Error & { digest?: string }
   //reset: () => void
 }) {
-	const t = useTranslations('Error')
+  const t = useTranslations('Error')
   const router = useRouter()
 
   useEffect(() => {
@@ -26,7 +26,7 @@ export default function Error({
       <Stack spacing={5} sx={{ display: 'flex', alignItems: 'center' }}>
         <ErrorPhrase />
         <Button fullWidth type='submit' variant='contained' onClick={() => router.push('/')}>
-					{t('homeBtn')}
+          {t('homeBtn')}
         </Button>
       </Stack>
     </BasicContainer>

@@ -3,7 +3,7 @@ import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline'
 import { useTranslations } from 'next-intl'
 
 export default function ErrorPhrase() {
-	const t = useTranslations('Phrase')
+  const t = useTranslations('Phrase')
 
   return (
     <>
@@ -11,9 +11,7 @@ export default function ErrorPhrase() {
         <ErrorOutlineIcon fontSize='large' />
         <Typography variant='h6'>{t('Common.error1')}</Typography>
       </Stack>
-      <Typography variant='body1'>
-				{t('Common.error2')}
-      </Typography>
+      <Typography variant='body1'>{t('Common.error2')}</Typography>
     </>
   )
 }

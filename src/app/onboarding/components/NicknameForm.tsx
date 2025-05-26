@@ -8,7 +8,7 @@ import { useUpdateNicknameMutation } from '@/queries'
 import { useTranslations } from 'next-intl'
 
 export default function NicknameForm() {
-	const t = useTranslations()
+  const t = useTranslations()
   const router = useRouter()
   const [nickname, setNickname] = useState<string>('')
   const { isLoading, validateNickname, isValid, isAvailable, helperText } =
@@ -68,7 +68,7 @@ export default function NicknameForm() {
         variant='contained'
         sx={{ mt: 3 }}
       >
-				{t('Common.next')}
+        {t('Common.next')}
       </Button>
     </Box>
   )

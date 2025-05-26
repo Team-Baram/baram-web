@@ -7,7 +7,7 @@ import { useDeleteUserMutation } from '@/queries'
 import { useTranslations } from 'next-intl'
 
 export default function ExitButtons() {
-	const t = useTranslations('Exit')
+  const t = useTranslations('Exit')
   const [isChecked, setIsChecked] = useState<boolean>(false)
   const deleteUserMutation = useDeleteUserMutation()
 
@@ -24,7 +24,7 @@ export default function ExitButtons() {
           disabled={!isChecked}
           onClick={() => deleteUserMutation.mutate()}
         >
-					{t('exitBtn')}
+          {t('exitBtn')}
         </Button>
       </Box>
       <Link href='/'>

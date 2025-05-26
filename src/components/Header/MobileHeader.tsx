@@ -17,7 +17,7 @@ interface MobileHeaderProps {
 }
 
 export default function MobileHeader({ isLogin }: MobileHeaderProps) {
-	const t = useTranslations('Header')
+  const t = useTranslations('Header')
   const pathname = usePathname()
   const router = useRouter()
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false)

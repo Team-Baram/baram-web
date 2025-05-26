@@ -6,7 +6,7 @@ import { Stack, Button } from '@mui/material'
 import { useTranslations } from 'next-intl'
 
 export default function MobileMyPageMenu() {
-	const t = useTranslations('My')
+  const t = useTranslations('My')
   const pathname = usePathname('My')
 
   return (
@@ -30,7 +30,7 @@ export default function MobileMyPageMenu() {
             fontWeight: 500,
           }}
         >
-					{t('profile')}
+          {t('profile')}
         </Button>
       </Link>
       <Link href='/my/account'>
@@ -42,7 +42,7 @@ export default function MobileMyPageMenu() {
             fontWeight: 500,
           }}
         >
-					{t('account')}
+          {t('account')}
         </Button>
       </Link>
     </Stack>

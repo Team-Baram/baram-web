@@ -23,7 +23,7 @@ import type {
 import { useTranslations } from 'next-intl'
 
 export default function PreferenceForm() {
-	const t = useTranslations()
+  const t = useTranslations()
   const theme = useTheme()
   const fullScreen = useMediaQuery(theme.breakpoints.down('sm'))
   const [isOpen, setIsOpen] = useState<boolean>(false)
@@ -146,7 +146,7 @@ export default function PreferenceForm() {
         variant='contained'
         sx={{ mt: 3 }}
       >
-				{t('Common.save')}
+        {t('Common.save')}
       </Button>
       <CustomDialog
         label={selectedPreference.label}

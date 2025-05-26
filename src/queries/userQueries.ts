@@ -17,15 +17,15 @@ export const useValidateNicknameQuery = (nickname: string, isValidNickname: bool
 }
 
 export const useRedirectOnBoardingMutation = () => {
-	const router = useRouter()
+  const router = useRouter()
 
   return useMutation({
     mutationFn: async () => {
-			const response = await ExternalAPI.post(`/api/user/onboarding`)	
-			return response.data
+      const response = await ExternalAPI.post(`/api/user/onboarding`)
+      return response.data
     },
     onSuccess: () => {
-			router.push('/onboarding/preference')
+      router.push('/onboarding/preference')
     },
   })
 }

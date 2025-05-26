@@ -7,8 +7,8 @@ export default async function ContactDetailPage({ params }: { params: Promise<{ 
   return (
     <MyPageContainer>
       <ErrorBoundary>
-				<ContactDetail id={id} />
-			</ErrorBoundary>
+        <ContactDetail id={id} />
+      </ErrorBoundary>
     </MyPageContainer>
   )
 }

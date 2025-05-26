@@ -11,7 +11,7 @@ interface MobileHeaderMenuProps {
 }
 
 export default function MobileHeaderMenu({ isLogin, closeMenu }: MobileHeaderMenuProps) {
-	const t = useTranslations('Header')
+  const t = useTranslations('Header')
   const logoutMutation = useLogoutMutation()
 
   return (

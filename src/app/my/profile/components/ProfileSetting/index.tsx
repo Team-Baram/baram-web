@@ -10,12 +10,10 @@ import PreferenceForm from './PreferenceForm'
 export default function ProfileSetting() {
   const isRestoring = useIsRestoring()
   const { isLoading, isError, isSuccess, error, data } = useFetchProfileQuery()
-	//const redirectOnBoardingMutation = useRedirectOnBoardingMutation()
+  //const redirectOnBoardingMutation = useRedirectOnBoardingMutation()
 
   if (isRestoring || isLoading) {
-    return (
-			<Spinner />
-    )
+    return <Spinner />
   }
 
   if (isError) {
@@ -28,7 +26,9 @@ export default function ProfileSetting() {
     <Stack spacing={2}>
       <ProfileForm avatarUrl={avatarUrl} nickname={nickname} isReportPublic={isReportPublic} />
       <Divider />
-      {preferences.length > 0 && <PreferenceForm id={preferences[0].id} preference={preferences[0]} />}
+      {preferences.length > 0 && (
+        <PreferenceForm id={preferences[0].id} preference={preferences[0]} />
+      )}
     </Stack>
   )
 }

@@ -7,7 +7,7 @@ import { useLogoutMutation } from '@/queries'
 import { useTranslations } from 'next-intl'
 
 export default function DesktopMyPageMenu() {
-	const t = useTranslations('My')
+  const t = useTranslations('My')
   const pathname = usePathname()
   const logoutMutation = useLogoutMutation()
 
@@ -33,7 +33,7 @@ export default function DesktopMyPageMenu() {
             pl: 2,
           }}
         >
-					{t('profile')}
+          {t('profile')}
         </Button>
       </Link>
       <Link href='/my/account'>
@@ -47,7 +47,7 @@ export default function DesktopMyPageMenu() {
             pl: 2,
           }}
         >
-					{t('account')}
+          {t('account')}
         </Button>
       </Link>
       <Divider />
@@ -62,7 +62,7 @@ export default function DesktopMyPageMenu() {
             pl: 2,
           }}
         >
-					{t('contact')}
+          {t('contact')}
         </Button>
       </Link>
       <Divider />
@@ -76,7 +76,7 @@ export default function DesktopMyPageMenu() {
         }}
         onClick={() => logoutMutation.mutate()}
       >
-				{t('logout')}
+        {t('logout')}
       </Button>
     </Stack>
   )

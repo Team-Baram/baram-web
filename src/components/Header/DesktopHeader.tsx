@@ -13,7 +13,7 @@ interface DesktopHeaderProps {
 }
 
 export default function DesktopHeader({ isLogin }: DesktopHeaderProps) {
-	const t = useTranslations('Header')
+  const t = useTranslations('Header')
   const pathname = usePathname()
   const router = useRouter()
 

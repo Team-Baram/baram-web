@@ -4,7 +4,7 @@ import { ExitButtons } from './components'
 import { getTranslations } from 'next-intl/server'
 
 export default async function ExitPage() {
-	const t = await getTranslations('Exit')
+  const t = await getTranslations('Exit')
 
   return (
     <BasicContainer>
@@ -15,7 +15,7 @@ export default async function ExitPage() {
           textAlign='center'
           sx={{ fontWeight: 'bold' }}
         >
-					{t('head')}
+          {t('head')}
         </Typography>
         <Typography
           variant='subtitle1'
@@ -23,7 +23,7 @@ export default async function ExitPage() {
           textAlign='center'
           sx={{ fontWeight: 'bold' }}
         >
-					{t('message')}
+          {t('message')}
         </Typography>
         <ExitButtons />
       </Stack>

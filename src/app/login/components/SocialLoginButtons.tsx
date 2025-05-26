@@ -7,7 +7,7 @@ import { useNaverLoginQuery } from '@/queries'
 import { useTranslations } from 'next-intl'
 
 export default function SocialLoginButtons() {
-	const t = useTranslations('Login')
+  const t = useTranslations('Login')
   const router = useRouter()
   const { data } = useNaverLoginQuery()
 
@@ -25,7 +25,7 @@ export default function SocialLoginButtons() {
         }}
         onClick={() => router.push(data.apiUrl)}
       >
-				{t('naver')}
+        {t('naver')}
       </Button>
       <Button
         fullWidth
@@ -38,7 +38,7 @@ export default function SocialLoginButtons() {
           maxWidth: 320,
         }}
       >
-				{t('kakao')}
+        {t('kakao')}
       </Button>
       <Button
         fullWidth
@@ -51,7 +51,7 @@ export default function SocialLoginButtons() {
           maxWidth: 320,
         }}
       >
-				{t('google')}
+        {t('google')}
       </Button>
     </Stack>
   )

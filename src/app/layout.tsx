@@ -27,40 +27,40 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode
 }>) {
-	const locale = await getLocale()
+  const locale = await getLocale()
   const accessToken = await getAccessToken()
 
   return (
     <html lang={locale} className={playfair.className}>
       <body>
-				<NextIntlClientProvider>
-        	<ThemeProvider>
-        	  <ReactQueryProvider>
-        	    <RecoilProvider>
-        	      <Box
-        	        sx={{
-        	          minHeight: '100vh',
-        	          height: '100%',
-        	          display: 'flex',
-        	          flexDirection: 'column',
-        	        }}
-        	      >
-        	        <Header isLogin={!!accessToken} />
-        	        <Box
-        	          sx={{
-        	            flexGrow: 1,
-        	            pt: '64px',
-        	            backgroundColor: theme.palette.background.default,
-        	          }}
-        	        >
-        	          {children}
-        	        </Box>
-        	        <Footer />
-        	      </Box>
-        	    </RecoilProvider>
-        	  </ReactQueryProvider>
-        	</ThemeProvider>
-				</NextIntlClientProvider>
+        <NextIntlClientProvider>
+          <ThemeProvider>
+            <ReactQueryProvider>
+              <RecoilProvider>
+                <Box
+                  sx={{
+                    minHeight: '100vh',
+                    height: '100%',
+                    display: 'flex',
+                    flexDirection: 'column',
+                  }}
+                >
+                  <Header isLogin={!!accessToken} />
+                  <Box
+                    sx={{
+                      flexGrow: 1,
+                      pt: '64px',
+                      backgroundColor: theme.palette.background.default,
+                    }}
+                  >
+                    {children}
+                  </Box>
+                  <Footer />
+                </Box>
+              </RecoilProvider>
+            </ReactQueryProvider>
+          </ThemeProvider>
+        </NextIntlClientProvider>
       </body>
     </html>
   )

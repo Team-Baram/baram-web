@@ -46,7 +46,7 @@ export default function ContactContainer() {
   }
 
   return (
-    <Box sx={{ width: '100%', height :'100%', display: 'flex', flexDirection: 'column' }}>
+    <Box sx={{ width: '100%', height: '100%', display: 'flex', flexDirection: 'column' }}>
       <ContactSummary
         contactSummary={summaryData.contactSummary}
         status={status}
