@@ -35,7 +35,6 @@ externalInstance.interceptors.response.use(
         await externalInstance.get('/api/auth/refresh')
         return externalInstance(originalRequest)
       } catch (err) {
-        console.log(err)
         removeAccessToken()
         window.location.href = '/login'
       }
