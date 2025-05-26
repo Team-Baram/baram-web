@@ -4,6 +4,7 @@ import { useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import { Stack, Button } from '@mui/material'
 import { BasicContainer, ErrorPhrase } from '@/components'
+import { useTranslations } from 'next-intl'
 
 export default function Error({
   error,
@@ -12,6 +13,7 @@ export default function Error({
   error: Error & { digest?: string }
   //reset: () => void
 }) {
+	const t = useTranslations('Error')
   const router = useRouter()
 
   useEffect(() => {
@@ -24,7 +26,7 @@ export default function Error({
       <Stack spacing={5} sx={{ display: 'flex', alignItems: 'center' }}>
         <ErrorPhrase />
         <Button fullWidth type='submit' variant='contained' onClick={() => router.push('/')}>
-          홈페이지로 돌아가기
+					{t('homeBtn')}
         </Button>
       </Stack>
     </BasicContainer>

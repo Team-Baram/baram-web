@@ -3,6 +3,7 @@
 import Link from 'next/link'
 import { Box, Stack, Typography, Divider } from '@mui/material'
 import { useLogoutMutation } from '@/queries'
+import { useTranslations } from 'next-intl'
 
 interface MobileHeaderMenuProps {
   isLogin: boolean
@@ -10,6 +11,7 @@ interface MobileHeaderMenuProps {
 }
 
 export default function MobileHeaderMenu({ isLogin, closeMenu }: MobileHeaderMenuProps) {
+	const t = useTranslations('Header')
   const logoutMutation = useLogoutMutation()
 
   return (
@@ -31,7 +33,7 @@ export default function MobileHeaderMenu({ isLogin, closeMenu }: MobileHeaderMen
             gutterBottom
             sx={{ px: 6, color: 'text.primary', fontWeight: 'bold' }}
           >
-            기록
+            {t('record')}
           </Typography>
         </Link>
         <Link href='/course' style={{ textDecoration: 'none' }} onClick={closeMenu}>
@@ -40,7 +42,7 @@ export default function MobileHeaderMenu({ isLogin, closeMenu }: MobileHeaderMen
             gutterBottom
             sx={{ px: 6, color: 'text.primary', fontWeight: 'bold' }}
           >
-            코스
+            {t('course')}
           </Typography>
         </Link>
         {isLogin && (
@@ -57,7 +59,7 @@ export default function MobileHeaderMenu({ isLogin, closeMenu }: MobileHeaderMen
                   cursor: 'pointer',
                 })}
               >
-                로그아웃
+                {t('logout')}
               </Typography>
             </Box>
           </>

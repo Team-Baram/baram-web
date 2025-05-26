@@ -3,9 +3,11 @@
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { Stack, Button } from '@mui/material'
+import { useTranslations } from 'next-intl'
 
 export default function MobileMyPageMenu() {
-  const pathname = usePathname()
+	const t = useTranslations('My')
+  const pathname = usePathname('My')
 
   return (
     <Stack
@@ -28,7 +30,7 @@ export default function MobileMyPageMenu() {
             fontWeight: 500,
           }}
         >
-          프로필
+					{t('profile')}
         </Button>
       </Link>
       <Link href='/my/account'>
@@ -40,7 +42,7 @@ export default function MobileMyPageMenu() {
             fontWeight: 500,
           }}
         >
-          계정 설정
+					{t('account')}
         </Button>
       </Link>
     </Stack>

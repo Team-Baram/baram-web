@@ -1,27 +1,20 @@
 'use client'
 
-import { Stack, Box, Divider, CircularProgress } from '@mui/material'
+import { Stack, Box, Divider } from '@mui/material'
 import { useIsRestoring } from '@tanstack/react-query'
-import { useFetchProfileQuery } from '@/queries'
+import { useFetchProfileQuery, useRedirectOnBoardingMutation } from '@/queries'
+import { Spinner } from '@/components'
 import ProfileForm from './ProfileForm'
 import PreferenceForm from './PreferenceForm'
 
 export default function ProfileSetting() {
   const isRestoring = useIsRestoring()
-  const { isLoading, isError, error, data } = useFetchProfileQuery()
+  const { isLoading, isError, isSuccess, error, data } = useFetchProfileQuery()
+	//const redirectOnBoardingMutation = useRedirectOnBoardingMutation()
 
   if (isRestoring || isLoading) {
     return (
-      <Box
-        sx={{
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-          height: '100%',
-        }}
-      >
-        <CircularProgress sx={{ color: (theme) => theme.palette.grey[500] }} />
-      </Box>
+			<Spinner />
     )
   }
 
@@ -35,7 +28,7 @@ export default function ProfileSetting() {
     <Stack spacing={2}>
       <ProfileForm avatarUrl={avatarUrl} nickname={nickname} isReportPublic={isReportPublic} />
       <Divider />
-      {preferences.length && <PreferenceForm id={preferences[0].id} preference={preferences[0]} />}
+      {preferences.length > 0 && <PreferenceForm id={preferences[0].id} preference={preferences[0]} />}
     </Stack>
   )
 }

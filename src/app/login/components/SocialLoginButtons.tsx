@@ -4,8 +4,10 @@ import { Stack, Button } from '@mui/material'
 import { useRouter } from 'next/navigation'
 import Image from 'next/image'
 import { useNaverLoginQuery } from '@/queries'
+import { useTranslations } from 'next-intl'
 
 export default function SocialLoginButtons() {
+	const t = useTranslations('Login')
   const router = useRouter()
   const { data } = useNaverLoginQuery()
 
@@ -23,7 +25,7 @@ export default function SocialLoginButtons() {
         }}
         onClick={() => router.push(data.apiUrl)}
       >
-        네이버 계정으로 계속하기
+				{t('naver')}
       </Button>
       <Button
         fullWidth
@@ -36,7 +38,7 @@ export default function SocialLoginButtons() {
           maxWidth: 320,
         }}
       >
-        카카오 계정으로 계속하기
+				{t('kakao')}
       </Button>
       <Button
         fullWidth
@@ -49,7 +51,7 @@ export default function SocialLoginButtons() {
           maxWidth: 320,
         }}
       >
-        구글 계정으로 계속하기
+				{t('google')}
       </Button>
     </Stack>
   )

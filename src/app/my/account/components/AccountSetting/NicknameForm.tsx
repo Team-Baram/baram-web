@@ -19,11 +19,11 @@ export default function NicknameForm({ nickname }: NicknameFormProps) {
 
   const updateNicknameMutation = useUpdateNicknameMutation()
 
-	useEffect(() => {
-		if (updateNicknameMutation.isSuccess) {
-			setIsSnackbarOpen(true)
-		}
-	}, [updateNicknameMutation.isSuccess])
+  useEffect(() => {
+    if (updateNicknameMutation.isSuccess) {
+      setIsSnackbarOpen(true)
+    }
+  }, [updateNicknameMutation.isSuccess])
 
   const handleError = () => {
     if (newNickname === '') return false
@@ -54,7 +54,7 @@ export default function NicknameForm({ nickname }: NicknameFormProps) {
   }
 
   const save = () => {
-		if (isLoading) return false 
+    if (isLoading) return false
 
     if (newNickname) {
       updateNicknameMutation.mutate({ nickname: newNickname })
@@ -65,7 +65,11 @@ export default function NicknameForm({ nickname }: NicknameFormProps) {
 
   return (
     <>
-      <SelectDialogButton label={'바람 활동명'} value={nickname} onClick={() => setIsDialogOpen(true)} />
+      <SelectDialogButton
+        label={'바람 활동명'}
+        value={nickname}
+        onClick={() => setIsDialogOpen(true)}
+      />
       <CustomSaveDialog
         label={'바람 활동명'}
         open={isDialogOpen}
@@ -83,12 +87,12 @@ export default function NicknameForm({ nickname }: NicknameFormProps) {
           onChange={handleTextChange}
         />
       </CustomSaveDialog>
-			<Snackbar
-				open={isSnackbarOpen}
-				autoHideDuration={3000}
-				onClose={() => setIsSnackbarOpen(false)}
-				message="변경 사항이 저장되었습니다."
-			/>
+      <Snackbar
+        open={isSnackbarOpen}
+        autoHideDuration={3000}
+        onClose={() => setIsSnackbarOpen(false)}
+        message='변경 사항이 저장되었습니다.'
+      />
     </>
   )
 }

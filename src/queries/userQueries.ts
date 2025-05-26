@@ -1,6 +1,7 @@
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
 import { QUERY_KEYS } from '@/queries'
 import { ExternalAPI } from '@/utils'
+import { useRouter } from 'next/navigation'
 
 export const useValidateNicknameQuery = (nickname: string, isValidNickname: boolean) => {
   const { isLoading, isError, error, data } = useQuery({
@@ -15,8 +16,22 @@ export const useValidateNicknameQuery = (nickname: string, isValidNickname: bool
   return { isLoading, isError, error, data }
 }
 
+export const useRedirectOnBoardingMutation = () => {
+	const router = useRouter()
+
+  return useMutation({
+    mutationFn: async () => {
+			const response = await ExternalAPI.post(`/api/user/onboarding`)	
+			return response.data
+    },
+    onSuccess: () => {
+			router.push('/onboarding/preference')
+    },
+  })
+}
+
 export const useFetchProfileQuery = () => {
-  const { isLoading, isError, error, data } = useQuery({
+  const { isLoading, isError, isSuccess, error, data } = useQuery({
     queryKey: [QUERY_KEYS.FETCH_PROFILE],
     queryFn: async () => {
       const response = await ExternalAPI.get('/api/user/profile')
@@ -24,7 +39,7 @@ export const useFetchProfileQuery = () => {
     },
   })
 
-  return { isLoading, isError, error, data }
+  return { isLoading, isError, isSuccess, error, data }
 }
 
 export const useFetchAccountQuery = () => {

@@ -14,9 +14,16 @@ import {
 import { SelectDialogButton, CustomDialog } from '@/components'
 import { activityTypeOptions, runningOptions, cyclingOptions } from '@/constants'
 import { useCreatePreferenceOnBoardingMutation } from '@/queries'
-import type { PreferenceForm, SelectedPreference, PreferenceOption, PreferenceActivityTypeOption } from '@/types'
+import type {
+  PreferenceForm,
+  SelectedPreference,
+  PreferenceOption,
+  PreferenceActivityTypeOption,
+} from '@/types'
+import { useTranslations } from 'next-intl'
 
 export default function PreferenceForm() {
+	const t = useTranslations()
   const theme = useTheme()
   const fullScreen = useMediaQuery(theme.breakpoints.down('sm'))
   const [isOpen, setIsOpen] = useState<boolean>(false)
@@ -33,7 +40,11 @@ export default function PreferenceForm() {
   })
   const createPreferenceOnBoardingMutation = useCreatePreferenceOnBoardingMutation()
 
-  const handleDialog = (label: string, key: string, options: PreferenceOption[] | PreferenceActivityTypeOption[]) => {
+  const handleDialog = (
+    label: string,
+    key: string,
+    options: PreferenceOption[] | PreferenceActivityTypeOption[],
+  ) => {
     setIsOpen(true)
     setSelectedPreference({
       label,
@@ -135,7 +146,7 @@ export default function PreferenceForm() {
         variant='contained'
         sx={{ mt: 3 }}
       >
-        저장하기
+				{t('Common.save')}
       </Button>
       <CustomDialog
         label={selectedPreference.label}

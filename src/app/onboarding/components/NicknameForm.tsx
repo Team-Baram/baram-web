@@ -5,8 +5,10 @@ import { useRouter } from 'next/navigation'
 import { Box, TextField, Button } from '@mui/material'
 import { useValidateNickname } from '@/hooks'
 import { useUpdateNicknameMutation } from '@/queries'
+import { useTranslations } from 'next-intl'
 
 export default function NicknameForm() {
+	const t = useTranslations()
   const router = useRouter()
   const [nickname, setNickname] = useState<string>('')
   const { isLoading, validateNickname, isValid, isAvailable, helperText } =
@@ -36,7 +38,7 @@ export default function NicknameForm() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-		if (isLoading) return false
+    if (isLoading) return false
 
     if (nickname) {
       updateNicknameMutation.mutate({ nickname })
@@ -52,7 +54,7 @@ export default function NicknameForm() {
       <TextField
         fullWidth
         id='nickname'
-        label='이름'
+        label={t('Onboarding.Nickname.label')}
         variant='standard'
         error={handleError()}
         helperText={helperText}
@@ -66,7 +68,7 @@ export default function NicknameForm() {
         variant='contained'
         sx={{ mt: 3 }}
       >
-        다음
+				{t('Common.next')}
       </Button>
     </Box>
   )

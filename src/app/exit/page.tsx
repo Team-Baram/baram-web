@@ -1,8 +1,11 @@
 import { Stack, Typography } from '@mui/material'
 import { BasicContainer } from '@/components'
-import { ExitButtons } from './components'	
+import { ExitButtons } from './components'
+import { getTranslations } from 'next-intl/server'
 
 export default async function ExitPage() {
+	const t = await getTranslations('Exit')
+
   return (
     <BasicContainer>
       <Stack spacing={7} sx={{ width: '100%' }}>
@@ -12,7 +15,7 @@ export default async function ExitPage() {
           textAlign='center'
           sx={{ fontWeight: 'bold' }}
         >
-          회원 탈퇴 시 주의사항
+					{t('head')}
         </Typography>
         <Typography
           variant='subtitle1'
@@ -20,7 +23,7 @@ export default async function ExitPage() {
           textAlign='center'
           sx={{ fontWeight: 'bold' }}
         >
-          고객님의 모든 정보가 영구적으로 삭제되며, 복구가 불가능합니다.
+					{t('message')}
         </Typography>
         <ExitButtons />
       </Stack>

@@ -4,8 +4,10 @@ import { usePathname } from 'next/navigation'
 import Link from 'next/link'
 import { Stack, Button, Divider } from '@mui/material'
 import { useLogoutMutation } from '@/queries'
+import { useTranslations } from 'next-intl'
 
 export default function DesktopMyPageMenu() {
+	const t = useTranslations('My')
   const pathname = usePathname()
   const logoutMutation = useLogoutMutation()
 
@@ -31,7 +33,7 @@ export default function DesktopMyPageMenu() {
             pl: 2,
           }}
         >
-          프로필
+					{t('profile')}
         </Button>
       </Link>
       <Link href='/my/account'>
@@ -45,7 +47,7 @@ export default function DesktopMyPageMenu() {
             pl: 2,
           }}
         >
-          계정 설정
+					{t('account')}
         </Button>
       </Link>
       <Divider />
@@ -60,7 +62,7 @@ export default function DesktopMyPageMenu() {
             pl: 2,
           }}
         >
-          문의 하기
+					{t('contact')}
         </Button>
       </Link>
       <Divider />
@@ -74,7 +76,7 @@ export default function DesktopMyPageMenu() {
         }}
         onClick={() => logoutMutation.mutate()}
       >
-        로그아웃
+				{t('logout')}
       </Button>
     </Stack>
   )

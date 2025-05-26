@@ -1,26 +1,29 @@
 import { Typography } from '@mui/material'
 import { MobileContainer, DesktopContainer } from '@/components'
+import { useTranslations } from 'next-intl'
 
 export default function LandingPhrase() {
+	const t = useTranslations('Phrase')
+
   return (
     <>
       <MobileContainer>
         <Typography variant='h4' sx={{ textAlign: 'center' }}>
-          각자의 페이스가
+					{t('Mobile.landing1')}
         </Typography>
         <Typography variant='h4' sx={{ textAlign: 'center' }}>
-          만드는
+					{t('Mobile.landing2')}
         </Typography>
         <Typography variant='h4' sx={{ textAlign: 'center' }}>
-          새로운 바람
+					{t('Mobile.landing3')}
         </Typography>
       </MobileContainer>
       <DesktopContainer>
         <Typography variant='h2' sx={{ textAlign: 'center' }}>
-          각자의 페이스가 만드는
+					{t('Desktop.landing1')}
         </Typography>
         <Typography variant='h2' sx={{ textAlign: 'center' }}>
-          새로운 바람
+					{t('Desktop.landing2')}
         </Typography>
       </DesktopContainer>
     </>

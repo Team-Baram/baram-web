@@ -1,7 +1,10 @@
 import { Typography } from '@mui/material'
 import { MobileContainer, DesktopContainer } from '@/components'
+import { useTranslations } from 'next-intl'
 
 export default function LoginPhrase() {
+	const t = useTranslations('Phrase')
+
   return (
     <>
       <MobileContainer>
@@ -11,7 +14,7 @@ export default function LoginPhrase() {
           textAlign='center'
           sx={{ fontFamily: 'var(--font-playfiar)', fontWeight: 'bold' }}
         >
-          당신의 바람,
+					{t('Mobile.login1')}
         </Typography>
 
         <Typography
@@ -20,7 +23,7 @@ export default function LoginPhrase() {
           textAlign='center'
           sx={{ fontFamily: 'var(--font-playfiar)', fontWeight: 'bold' }}
         >
-          Baram과 함께 이뤄보세요.
+					{t('Mobile.login2')}
         </Typography>
       </MobileContainer>
       <DesktopContainer>
@@ -30,7 +33,7 @@ export default function LoginPhrase() {
           textAlign='center'
           sx={{ fontFamily: 'var(--font-playfiar)', fontWeight: 'bold' }}
         >
-          당신의 바람, Baram과 함께 이뤄보세요.
+					{t('Desktop.login')}
         </Typography>
       </DesktopContainer>
     </>

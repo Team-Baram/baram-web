@@ -22,7 +22,6 @@ const MyPageDesktopContainer = styled(DesktopContainer)`
 `
 
 export default function MyPage({ children }: { children: ReactNode }) {
-
   return (
     <>
       <MyPageMobileContainer display='flex'>

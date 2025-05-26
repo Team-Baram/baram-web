@@ -2,6 +2,7 @@
 
 import { ReactNode } from 'react'
 import { Dialog, DialogTitle, DialogContent, Stack, Button } from '@mui/material'
+import { useTranslations } from 'next-intl'
 
 interface CustomSaveDialogProps {
   children: ReactNode
@@ -22,6 +23,8 @@ export default function CustomSaveDialog({
   disabledBtn = false,
   //fullScreen,
 }: CustomSaveDialogProps) {
+	const t = useTranslations('Common')
+
   return (
     <Dialog
       open={open}
@@ -36,10 +39,10 @@ export default function CustomSaveDialog({
         {children}
         <Stack mt={2} spacing={1} direction='row' sx={{ justifyContent: 'flex-end' }}>
           <Button variant='outlined' onClick={cancel}>
-            취소
+						{t('cancel')}
           </Button>
           <Button variant='contained' disabled={disabledBtn} onClick={save}>
-            저장
+						{t('save')}
           </Button>
         </Stack>
       </DialogContent>

@@ -1,7 +1,15 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { Stack, IconButton, Divider, FormControlLabel, Switch, Typography, Snackbar } from '@mui/material'
+import {
+  Stack,
+  IconButton,
+  Divider,
+  FormControlLabel,
+  Switch,
+  Typography,
+  Snackbar,
+} from '@mui/material'
 import { useUpdateProfileMutation } from '@/queries'
 import PersonOutlineIcon from '@mui/icons-material/PersonOutline'
 
@@ -11,19 +19,15 @@ interface ProfileFormProps {
   isReportPublic: boolean
 }
 
-export default function ProfileForm({
-  avatarUrl,
-  nickname,
-  isReportPublic,
-}: ProfileFormProps) {
-	const [ isSnackbarOpen, setIsSnackbarOpen ] = useState<boolean>(false)
+export default function ProfileForm({ avatarUrl, nickname, isReportPublic }: ProfileFormProps) {
+  const [isSnackbarOpen, setIsSnackbarOpen] = useState<boolean>(false)
   const updateProfileMutation = useUpdateProfileMutation()
 
-	useEffect(() => {
-		if (updateProfileMutation.isSuccess) {
-			setIsSnackbarOpen(true)
-		}
-	}, [updateProfileMutation.isSuccess])
+  useEffect(() => {
+    if (updateProfileMutation.isSuccess) {
+      setIsSnackbarOpen(true)
+    }
+  }, [updateProfileMutation.isSuccess])
 
   return (
     <>
@@ -57,12 +61,12 @@ export default function ProfileForm({
         label='전체 공개'
         sx={{ color: 'grey' }}
       />
-			<Snackbar
-				open={isSnackbarOpen}
-				autoHideDuration={3000}
-				onClose={() => setIsSnackbarOpen(false)}
-				message="변경 사항이 저장되었습니다."
-			/>
+      <Snackbar
+        open={isSnackbarOpen}
+        autoHideDuration={3000}
+        onClose={() => setIsSnackbarOpen(false)}
+        message='변경 사항이 저장되었습니다.'
+      />
     </>
   )
 }

@@ -6,12 +6,14 @@ import Link from 'next/link'
 import { Toolbar, Box, Button, IconButton, Avatar } from '@mui/material'
 import PersonOutlineIcon from '@mui/icons-material/PersonOutline'
 import { DesktopContainer } from '@/components'
+import { useTranslations } from 'next-intl'
 
 interface DesktopHeaderProps {
   isLogin: boolean
 }
 
 export default function DesktopHeader({ isLogin }: DesktopHeaderProps) {
+	const t = useTranslations('Header')
   const pathname = usePathname()
   const router = useRouter()
 
@@ -27,10 +29,10 @@ export default function DesktopHeader({ isLogin }: DesktopHeaderProps) {
                 <Image src='/logo.svg' alt='Baram Logo' width={120} height={65} />
               </Link>
               <Link href='/record'>
-                <Button sx={{ color: 'text.primary', fontWeight: 500 }}>기록</Button>
+                <Button sx={{ color: 'text.primary', fontWeight: 500 }}>{t('record')}</Button>
               </Link>
               <Link href='/course'>
-                <Button sx={{ color: 'text.primary', fontWeight: 500 }}>코스</Button>
+                <Button sx={{ color: 'text.primary', fontWeight: 500 }}>{t('course')}</Button>
               </Link>
             </>
           )}
@@ -50,7 +52,7 @@ export default function DesktopHeader({ isLogin }: DesktopHeaderProps) {
               </IconButton>
             ) : (
               <Link href='/login'>
-                <Button>로그인</Button>
+                <Button>{t('login')}</Button>
               </Link>
             )}
           </Box>

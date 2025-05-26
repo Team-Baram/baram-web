@@ -8,13 +8,13 @@ import {
   Typography,
   Divider,
   Button,
-  CircularProgress,
 } from '@mui/material'
 import PersonOutlineIcon from '@mui/icons-material/PersonOutline'
 import PlayArrowIcon from '@mui/icons-material/PlayArrow'
 import { useIsRestoring } from '@tanstack/react-query'
-import NicknameForm from './NicknameForm'
 import { useFetchAccountQuery } from '@/queries'
+import { Spinner } from '@/components' 
+import NicknameForm from './NicknameForm'
 
 export default function AccountSetting() {
   const isRestoring = useIsRestoring()
@@ -22,16 +22,7 @@ export default function AccountSetting() {
 
   if (isRestoring || isLoading) {
     return (
-      <Box
-        sx={{
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-          height: '100%',
-        }}
-      >
-        <CircularProgress sx={{ color: (theme) => theme.palette.grey[500] }} />
-      </Box>
+			<Spinner />
     )
   }
 

@@ -1,20 +1,23 @@
 import { Typography } from '@mui/material'
 import { MobileContainer, DesktopContainer } from '@/components'
+import { useTranslations } from 'next-intl'
 
 export default function PreferencePhrase() {
+	const t = useTranslations('Phrase')
+
   return (
     <>
       <MobileContainer>
         <Typography variant='h6' align='center'>
-          아래 정보를 추가하면
+					{t('Mobile.preference1')}
         </Typography>
         <Typography variant='h6' align='center' gutterBottom>
-          적절한 코스를 추천해 드려요 !
+					{t('Mobile.preference2')}
         </Typography>
       </MobileContainer>
       <DesktopContainer>
         <Typography variant='h6' align='center' gutterBottom>
-          아래 정보를 추가하면 적절한 코스를 추천해 드려요 !
+					{t('Desktop.preference')}
         </Typography>
       </DesktopContainer>
     </>

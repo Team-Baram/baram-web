@@ -4,8 +4,10 @@ import { useState } from 'react'
 import Link from 'next/link'
 import { Stack, Box, Button, FormControlLabel, Checkbox } from '@mui/material'
 import { useDeleteUserMutation } from '@/queries'
+import { useTranslations } from 'next-intl'
 
 export default function ExitButtons() {
+	const t = useTranslations('Exit')
   const [isChecked, setIsChecked] = useState<boolean>(false)
   const deleteUserMutation = useDeleteUserMutation()
 
@@ -13,7 +15,7 @@ export default function ExitButtons() {
     <Stack spacing={3} sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
       <Box>
         <FormControlLabel
-          label='회원 탈퇴 이후 삭제한 데이터를 복구할 수 없음을 이해했습니다.'
+          label={t('label')}
           control={<Checkbox checked={isChecked} onChange={() => setIsChecked((prev) => !prev)} />}
         />
         <Button
@@ -22,11 +24,11 @@ export default function ExitButtons() {
           disabled={!isChecked}
           onClick={() => deleteUserMutation.mutate()}
         >
-          회원 탈퇴
+					{t('exitBtn')}
         </Button>
       </Box>
       <Link href='/'>
-        <Button>회원 탈퇴 취소</Button>
+        <Button>{t('cancel')}</Button>
       </Link>
     </Stack>
   )

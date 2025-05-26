@@ -1,11 +1,24 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { Box, Typography, RadioGroup, Radio, FormControl, FormControlLabel, Snackbar } from '@mui/material'
+import {
+  Box,
+  Typography,
+  RadioGroup,
+  Radio,
+  FormControl,
+  FormControlLabel,
+  Snackbar,
+} from '@mui/material'
 import { SelectDialogButton, CustomSaveDialog } from '@/components'
 import { useUpdatePreferenceMutation } from '@/queries'
 import { activityTypeOptions, runningOptions, cyclingOptions } from '@/constants'
-import type { SelectedPreference, PreferenceOption, PreferenceActivityTypeOption, PreferenceForm } from '@/types'
+import type {
+  SelectedPreference,
+  PreferenceOption,
+  PreferenceActivityTypeOption,
+  PreferenceForm,
+} from '@/types'
 
 interface PreferenceFormProps {
   id: number
@@ -21,19 +34,25 @@ export default function PreferenceForm({ id, preference }: PreferenceFormProps) 
     key: 'activityType',
     options: activityTypeOptions,
   })
-  const [selectedOption, setSelectedOption] = useState<PreferenceOption | PreferenceActivityTypeOption>(activityTypeOptions[0])
+  const [selectedOption, setSelectedOption] = useState<
+    PreferenceOption | PreferenceActivityTypeOption
+  >(activityTypeOptions[0])
 
   const updatePreferenceMutation = useUpdatePreferenceMutation()
 
-	useEffect(() => {
-		if (updatePreferenceMutation.isSuccess) {
-			setIsSnackbarOpen(true)
-		}
-	}, [updatePreferenceMutation.isSuccess])
+  useEffect(() => {
+    if (updatePreferenceMutation.isSuccess) {
+      setIsSnackbarOpen(true)
+    }
+  }, [updatePreferenceMutation.isSuccess])
 
   const preferenceOptions = activityType === 'running' ? runningOptions : cyclingOptions
 
-  const handleDialog = (label: string, key: string, options: PreferenceOption[] | PreferenceActivityTypeOption[]) => {
+  const handleDialog = (
+    label: string,
+    key: string,
+    options: PreferenceOption[] | PreferenceActivityTypeOption[],
+  ) => {
     setIsDialogOpen(true)
     setSelectedPreference({
       label,
@@ -115,26 +134,32 @@ export default function PreferenceForm({ id, preference }: PreferenceFormProps) 
         cancel={() => setIsDialogOpen(false)}
         save={save}
       >
-				<Box>
-        <FormControl>
-          <RadioGroup name='preference'>
-            {selectedPreference.options.map((option) => (
-              <FormControlLabel
-                key={option.value}
-                value={option.value}
-                control={<Radio checked={option.value === selectedOption.value} color='secondary' onClick={() => setSelectedOption(option)} />}
-                label={option.label}
-              />
-            ))}
-          </RadioGroup>
-        </FormControl>
-				</Box>
+        <Box>
+          <FormControl>
+            <RadioGroup name='preference'>
+              {selectedPreference.options.map((option) => (
+                <FormControlLabel
+                  key={option.value}
+                  value={option.value}
+                  control={
+                    <Radio
+                      checked={option.value === selectedOption.value}
+                      color='secondary'
+                      onClick={() => setSelectedOption(option)}
+                    />
+                  }
+                  label={option.label}
+                />
+              ))}
+            </RadioGroup>
+          </FormControl>
+        </Box>
       </CustomSaveDialog>
-			<Snackbar
+      <Snackbar
         open={isSnackbarOpen}
         autoHideDuration={3000}
         onClose={() => setIsSnackbarOpen(false)}
-        message="변경 사항이 저장되었습니다."
+        message='변경 사항이 저장되었습니다.'
       />
     </>
   )

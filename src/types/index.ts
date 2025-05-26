@@ -1,5 +1,7 @@
 export type ActivityType = 'running' | 'cycling'
 
+export type ContactStatus = 'pending' | 'answered'
+
 export interface PreferenceOption {
   label: string
   value: number
@@ -7,7 +9,7 @@ export interface PreferenceOption {
 
 export interface PreferenceActivityTypeOption {
   label: string
-  value: ActivityType 
+  value: ActivityType
 }
 
 export interface PreferenceForm {

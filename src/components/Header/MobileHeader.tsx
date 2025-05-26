@@ -10,12 +10,14 @@ import MenuIcon from '@mui/icons-material/Menu'
 import CloseIcon from '@mui/icons-material/Close'
 import MobileHeaderMenu from './MobileHeaderMenu'
 import { MobileContainer } from '@/components'
+import { useTranslations } from 'next-intl'
 
 interface MobileHeaderProps {
   isLogin: boolean
 }
 
 export default function MobileHeader({ isLogin }: MobileHeaderProps) {
+	const t = useTranslations('Header')
   const pathname = usePathname()
   const router = useRouter()
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false)
@@ -56,7 +58,7 @@ export default function MobileHeader({ isLogin }: MobileHeaderProps) {
                   pathname,
                 ) && (
                   <Link href='/login' onClick={() => setIsMenuOpen(false)}>
-                    <Button>로그인</Button>
+                    <Button>{t('login')}</Button>
                   </Link>
                 )
               ))}

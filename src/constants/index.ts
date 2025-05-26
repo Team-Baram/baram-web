@@ -1,13 +1,13 @@
-import type { PreferenceOption, PreferenceActivityTypeOption } from '@/types' 
+import type { PreferenceOption, PreferenceActivityTypeOption } from '@/types'
 export const activityTypeOptions: PreferenceActivityTypeOption[] = [
   { label: '러닝', value: 'running' },
   { label: '라이딩', value: 'cycling' },
 ]
 export const runningOptions: {
-		distanceOptions: PreferenceOption[],
-		paceOptions: PreferenceOption[],	
-		activityDaysPerWeekOptions: PreferenceOption[]
-	} = {
+  distanceOptions: PreferenceOption[]
+  paceOptions: PreferenceOption[]
+  activityDaysPerWeekOptions: PreferenceOption[]
+} = {
   distanceOptions: [
     { label: '0 ~ 5', value: 5 },
     { label: '5 ~ 10', value: 10 },
@@ -38,10 +38,10 @@ export const runningOptions: {
   ],
 }
 export const cyclingOptions: {
-		distanceOptions: PreferenceOption[],
-		paceOptions: PreferenceOption[],	
-		activityDaysPerWeekOptions: PreferenceOption[]
-	} = {
+  distanceOptions: PreferenceOption[]
+  paceOptions: PreferenceOption[]
+  activityDaysPerWeekOptions: PreferenceOption[]
+} = {
   distanceOptions: [
     { label: '0 ~ 15', value: 15 },
     { label: '15 ~ 30', value: 30 },
