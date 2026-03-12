@@ -31,7 +31,7 @@ export const useRedirectOnBoardingMutation = () => {
 }
 
 export const useFetchProfileQuery = () => {
-  const { isLoading, isError, isSuccess, error, data } = useQuery({
+  const { isLoading, isError, error, data } = useQuery({
     queryKey: [QUERY_KEYS.FETCH_PROFILE],
     queryFn: async () => {
       const response = await ExternalAPI.get('/api/user/profile')
@@ -39,7 +39,7 @@ export const useFetchProfileQuery = () => {
     },
   })
 
-  return { isLoading, isError, isSuccess, error, data }
+  return { isLoading, isError, error, data }
 }
 
 export const useFetchAccountQuery = () => {
@@ -63,7 +63,7 @@ export const useUpdateNicknameMutation = () => {
       return response.data
     },
     onSuccess: () => {
-      queryClient.invalidateQueries([QUERY_KEYS.VALIDATE_NICKNAME])
+      queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.VALIDATE_NICKNAME] })
     },
   })
 }

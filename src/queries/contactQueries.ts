@@ -84,7 +84,7 @@ export const useCreateContactMutation = () => {
       return response.data
     },
     onSuccess: () => {
-      queryClient.invalidateQueries([QUERY_KEYS.FETCH_CONTACTS])
+      queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.FETCH_CONTACTS] })
       router.push('/my/contact')
     },
   })

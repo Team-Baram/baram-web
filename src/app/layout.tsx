@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import { Playfair_Display } from 'next/font/google'
 import { Box } from '@mui/material'
-import { ReactQueryProvider, RecoilProvider, ThemeProvider } from '@/providers'
+import { ReactQueryProvider, ThemeProvider } from '@/providers'
 import { Header, Footer } from '@/components'
 import { theme } from '@/utils'
 import { getAccessToken } from '@/utils/serverUtils'
@@ -36,7 +36,6 @@ export default async function RootLayout({
         <NextIntlClientProvider>
           <ThemeProvider>
             <ReactQueryProvider>
-              <RecoilProvider>
                 <Box
                   sx={{
                     minHeight: '100vh',
@@ -57,7 +56,6 @@ export default async function RootLayout({
                   </Box>
                   <Footer />
                 </Box>
-              </RecoilProvider>
             </ReactQueryProvider>
           </ThemeProvider>
         </NextIntlClientProvider>

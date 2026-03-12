@@ -22,22 +22,6 @@ export const useCreatePreferenceOnBoardingMutation = () => {
   })
 }
 
-//export const useCreatePreferenceMutation = () => {
-//  return useMutation({
-//    mutationFn: async (dto: {
-//      activityType: string
-//      distance: number
-//      pace: number
-//      activityDaysPerWeek: number
-//    }) => {
-//      const response = await ExternalAPI.post('/api/preference', dto)
-//      return response.data
-//    },
-//    onSuccess: (data) => {
-//    },
-//  })
-//}
-
 export const useUpdatePreferenceMutation = () => {
   const queryClient = useQueryClient()
 
