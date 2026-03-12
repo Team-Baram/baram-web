@@ -7,7 +7,7 @@ import { useTranslations } from 'next-intl'
 
 export default function MobileMyPageMenu() {
   const t = useTranslations('My')
-  const pathname = usePathname('My')
+  const pathname = usePathname()
 
   return (
     <Stack

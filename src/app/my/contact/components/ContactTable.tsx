@@ -7,7 +7,7 @@ import dayjs from 'dayjs'
 
 interface ContactTableProps {
   page: number
-  onPageChange: (e: React.ChageEvent, page: number) => void
+  onPageChange: (e: React.ChangeEvent, page: number) => void
   paginatedContact: {
     data: any[]
     total: number

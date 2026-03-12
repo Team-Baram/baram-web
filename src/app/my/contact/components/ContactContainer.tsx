@@ -33,7 +33,7 @@ export default function ContactContainer() {
   }
 
   if (isSummaryError || isContactsError) {
-    throw summaryError ?? contactError
+    throw summaryError ?? contactsError
   }
 
   const handlePageChange = (e: React.ChangeEvent, page: number) => {

@@ -25,22 +25,10 @@ export default function NicknameForm({ nickname }: NicknameFormProps) {
     }
   }, [updateNicknameMutation.isSuccess])
 
-  const handleError = () => {
-    if (newNickname === '') return false
-    if (nickname === newNickname) return false
-    return !(isValid && isAvailable)
-  }
-
-  const handleBtnDisabled = () => {
-    if (newNickname === '') return true
-    if (nickname === newNickname) return true
-    return !(isValid && isAvailable)
-  }
-
-  const handleHelperText = () => {
-    if (nickname === newNickname) return '현재 사용 중인 이름입니다.'
-    return helperText
-  }
+  const isSameNickname = nickname === newNickname
+  const hasError = newNickname !== '' && !isSameNickname && !(isValid && isAvailable)
+  const isBtnDisabled = newNickname === '' || isSameNickname || !(isValid && isAvailable)
+  const nicknameHelperText = isSameNickname ? '현재 사용 중인 이름입니다.' : helperText
 
   const handleTextChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const text = e.target.value
@@ -75,14 +63,14 @@ export default function NicknameForm({ nickname }: NicknameFormProps) {
         open={isDialogOpen}
         cancel={cancel}
         save={save}
-        disabledBtn={handleBtnDisabled()}
+        disabledBtn={isBtnDisabled}
       >
         <TextField
           fullWidth
           id='nickname'
           variant='standard'
-          error={handleError()}
-          helperText={handleHelperText()}
+          error={hasError}
+          helperText={nicknameHelperText}
           value={newNickname}
           onChange={handleTextChange}
         />

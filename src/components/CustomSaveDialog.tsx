@@ -11,7 +11,6 @@ interface CustomSaveDialogProps {
   cancel: () => void
   save: () => void
   disabledBtn?: boolean
-  //fullScreen: boolean
 }
 
 export default function CustomSaveDialog({
@@ -21,15 +20,13 @@ export default function CustomSaveDialog({
   cancel,
   save,
   disabledBtn = false,
-  //fullScreen,
 }: CustomSaveDialogProps) {
   const t = useTranslations('Common')
 
   return (
     <Dialog
       open={open}
-      onClose={close}
-      fullScreen={false}
+      onClose={cancel}
       fullWidth
       maxWidth='xs'
       PaperProps={{ sx: { backgroundColor: '#ffffff' } }}

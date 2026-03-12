@@ -40,6 +40,9 @@ export default function PreferenceForm() {
   })
   const createPreferenceOnBoardingMutation = useCreatePreferenceOnBoardingMutation()
 
+  const isRunning = preferenceForm.activityType.value === 'running'
+  const activityOptions = isRunning ? runningOptions : cyclingOptions
+
   const handleDialog = (
     label: string,
     key: string,
@@ -55,21 +58,13 @@ export default function PreferenceForm() {
 
   const handleItemClick = <K extends keyof PreferenceForm>(key: K, option: PreferenceForm[K]) => {
     if (key === 'activityType') {
+      const opts = option.value === 'running' ? runningOptions : cyclingOptions
       setPreferenceForm((prev) => ({
         ...prev,
         activityType: option as PreferenceActivityTypeOption,
-        distance:
-          option.value === 'running'
-            ? runningOptions.distanceOptions[0]
-            : cyclingOptions.distanceOptions[0],
-        pace:
-          option.value === 'running'
-            ? runningOptions.paceOptions[runningOptions.paceOptions.length - 1]
-            : cyclingOptions.paceOptions[0],
-        activityDaysPerWeek:
-          option.value === 'running'
-            ? runningOptions.activityDaysPerWeekOptions[0]
-            : cyclingOptions.activityDaysPerWeekOptions[0],
+        distance: opts.distanceOptions[0],
+        pace: option.value === 'running' ? opts.paceOptions[opts.paceOptions.length - 1] : opts.paceOptions[0],
+        activityDaysPerWeek: opts.activityDaysPerWeekOptions[0],
       }))
     } else {
       setPreferenceForm((prev) => ({ ...prev, [key]: option as PreferenceOption }))
@@ -103,40 +98,20 @@ export default function PreferenceForm() {
       <SelectDialogButton
         label='선호 거리 (km)'
         value={preferenceForm.distance.label}
-        onClick={() =>
-          handleDialog(
-            '선호 거리 (km)',
-            'distance',
-            preferenceForm.activityType.value === 'running'
-              ? runningOptions.distanceOptions
-              : cyclingOptions.distanceOptions,
-          )
-        }
+        onClick={() => handleDialog('선호 거리 (km)', 'distance', activityOptions.distanceOptions)}
       />
       <SelectDialogButton
-        label={`평균 페이스 ${preferenceForm.activityType.value === 'running' ? '(분/km)' : '(km/h)'}`}
+        label={`평균 페이스 ${isRunning ? '(분/km)' : '(km/h)'}`}
         value={preferenceForm.pace.label}
         onClick={() =>
-          handleDialog(
-            `평균 페이스${preferenceForm.activityType.value === 'running' ? '(분/km)' : '(km/h)'}`,
-            'pace',
-            preferenceForm.activityType.value === 'running'
-              ? runningOptions.paceOptions
-              : cyclingOptions.paceOptions,
-          )
+          handleDialog(`평균 페이스 ${isRunning ? '(분/km)' : '(km/h)'}`, 'pace', activityOptions.paceOptions)
         }
       />
       <SelectDialogButton
-        label={`주간 ${preferenceForm.activityType.value === 'running' ? '러닝' : '라이딩'} 횟수`}
+        label={`주간 ${isRunning ? '러닝' : '라이딩'} 횟수`}
         value={preferenceForm.activityDaysPerWeek.label}
         onClick={() =>
-          handleDialog(
-            `주간 ${preferenceForm.activityType.value === 'running' ? '러닝' : '라이딩'} 횟수`,
-            'activityDaysPerWeek',
-            preferenceForm.activityType.value === 'running'
-              ? runningOptions.activityDaysPerWeekOptions
-              : cyclingOptions.activityDaysPerWeekOptions,
-          )
+          handleDialog(`주간 ${isRunning ? '러닝' : '라이딩'} 횟수`, 'activityDaysPerWeek', activityOptions.activityDaysPerWeekOptions)
         }
       />
       <Button

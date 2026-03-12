@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import { Box, TextField, Button } from '@mui/material'
 import { useValidateNickname } from '@/hooks'
@@ -16,19 +16,14 @@ export default function NicknameForm() {
 
   const updateNicknameMutation = useUpdateNicknameMutation()
 
-  if (updateNicknameMutation.isSuccess) {
-    router.push('/onboarding/preference')
-  }
+  useEffect(() => {
+    if (updateNicknameMutation.isSuccess) {
+      router.push('/onboarding/preference')
+    }
+  }, [updateNicknameMutation.isSuccess])
 
-  const handleError = () => {
-    if (nickname === '') return false
-    return !(isValid && isAvailable)
-  }
-
-  const handleBtnDisabled = () => {
-    if (nickname === '') return true
-    return !(isValid && isAvailable)
-  }
+  const hasError = nickname !== '' && !(isValid && isAvailable)
+  const isBtnDisabled = nickname === '' || !(isValid && isAvailable)
 
   const handleTextChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const text = e.target.value
@@ -38,7 +33,7 @@ export default function NicknameForm() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    if (isLoading) return false
+    if (isLoading) return
 
     if (nickname) {
       updateNicknameMutation.mutate({ nickname })
@@ -56,7 +51,7 @@ export default function NicknameForm() {
         id='nickname'
         label={t('Onboarding.Nickname.label')}
         variant='standard'
-        error={handleError()}
+        error={hasError}
         helperText={helperText}
         value={nickname}
         onChange={handleTextChange}
@@ -64,7 +59,7 @@ export default function NicknameForm() {
       <Button
         type='submit'
         fullWidth
-        disabled={handleBtnDisabled()}
+        disabled={isBtnDisabled}
         variant='contained'
         sx={{ mt: 3 }}
       >
