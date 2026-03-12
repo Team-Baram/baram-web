@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useRef } from 'react'
+import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { Box, Stack, TextField, Button, Typography } from '@mui/material'
 import { useCreateContactMutation } from '@/queries'
@@ -25,15 +25,12 @@ export default function InquiryForm() {
     router.push('/my/contact')
   }
 
+  const isBtnDisabled = title === '' || content === ''
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    if (title === '' || content === '') return false
+    if (isBtnDisabled) return
     createContactMutation.mutate({ title, content })
-  }
-
-  const handleBtnDisabled = () => {
-    if (title === '' || content === '') return true
-    return false
   }
 
   return (
@@ -65,7 +62,7 @@ export default function InquiryForm() {
         <Button variant='outlined' sx={{ mt: 3 }} onClick={handleCancel}>
           취소
         </Button>
-        <Button type='submit' disabled={handleBtnDisabled()} variant='contained' sx={{ mt: 3 }}>
+        <Button type='submit' disabled={isBtnDisabled} variant='contained' sx={{ mt: 3 }}>
           등록
         </Button>
       </Stack>

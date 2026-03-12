@@ -36,7 +36,7 @@ export default function ContactContainer() {
     throw summaryError ?? contactsError
   }
 
-  const handlePageChange = (e: React.ChangeEvent, page: number) => {
+  const handlePageChange = (_: React.ChangeEvent, page: number) => {
     setPage(page)
   }
 

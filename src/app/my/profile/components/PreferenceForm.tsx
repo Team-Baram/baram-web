@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import {
   Box,
   Typography,
@@ -12,6 +12,7 @@ import {
 } from '@mui/material'
 import { SelectDialogButton, CustomSaveDialog } from '@/components'
 import { useUpdatePreferenceMutation } from '@/queries'
+import { useSaveSuccessSnackbar } from '@/hooks'
 import { activityTypeOptions, runningOptions, cyclingOptions } from '@/constants'
 import type {
   SelectedPreference,
@@ -28,7 +29,6 @@ interface PreferenceFormProps {
 export default function PreferenceForm({ id, preference }: PreferenceFormProps) {
   const { activityType, distance, pace, activityDaysPerWeek } = preference
   const [isDialogOpen, setIsDialogOpen] = useState<boolean>(false)
-  const [isSnackbarOpen, setIsSnackbarOpen] = useState<boolean>(false)
   const [selectedPreference, setSelectedPreference] = useState<SelectedPreference>({
     label: '종목',
     key: 'activityType',
@@ -39,12 +39,7 @@ export default function PreferenceForm({ id, preference }: PreferenceFormProps) 
   >(activityTypeOptions[0])
 
   const updatePreferenceMutation = useUpdatePreferenceMutation()
-
-  useEffect(() => {
-    if (updatePreferenceMutation.isSuccess) {
-      setIsSnackbarOpen(true)
-    }
-  }, [updatePreferenceMutation.isSuccess])
+  const { isSnackbarOpen, closeSnackbar } = useSaveSuccessSnackbar(updatePreferenceMutation.isSuccess)
 
   const isRunning = activityType === 'running'
   const preferenceOptions = isRunning ? runningOptions : cyclingOptions
@@ -137,7 +132,7 @@ export default function PreferenceForm({ id, preference }: PreferenceFormProps) 
       <Snackbar
         open={isSnackbarOpen}
         autoHideDuration={3000}
-        onClose={() => setIsSnackbarOpen(false)}
+        onClose={closeSnackbar}
         message='변경 사항이 저장되었습니다.'
       />
     </>

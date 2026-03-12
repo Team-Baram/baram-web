@@ -1,9 +1,9 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { TextField, Snackbar } from '@mui/material'
 import { SelectDialogButton, CustomSaveDialog } from '@/components'
-import { useValidateNickname } from '@/hooks'
+import { useValidateNickname, useSaveSuccessSnackbar } from '@/hooks'
 import { useUpdateNicknameMutation } from '@/queries'
 
 interface NicknameFormProps {
@@ -12,18 +12,12 @@ interface NicknameFormProps {
 
 export default function NicknameForm({ nickname }: NicknameFormProps) {
   const [isDialogOpen, setIsDialogOpen] = useState<boolean>(false)
-  const [isSnackbarOpen, setIsSnackbarOpen] = useState<boolean>(false)
   const [newNickname, setNewNickname] = useState<string>(nickname)
   const { isLoading, validateNickname, isValid, isAvailable, helperText } =
     useValidateNickname(newNickname)
 
   const updateNicknameMutation = useUpdateNicknameMutation()
-
-  useEffect(() => {
-    if (updateNicknameMutation.isSuccess) {
-      setIsSnackbarOpen(true)
-    }
-  }, [updateNicknameMutation.isSuccess])
+  const { isSnackbarOpen, closeSnackbar } = useSaveSuccessSnackbar(updateNicknameMutation.isSuccess)
 
   const isSameNickname = nickname === newNickname
   const hasError = newNickname !== '' && !isSameNickname && !(isValid && isAvailable)
@@ -42,7 +36,7 @@ export default function NicknameForm({ nickname }: NicknameFormProps) {
   }
 
   const save = () => {
-    if (isLoading) return false
+    if (isLoading) return
 
     if (newNickname) {
       updateNicknameMutation.mutate({ nickname: newNickname })
@@ -78,7 +72,7 @@ export default function NicknameForm({ nickname }: NicknameFormProps) {
       <Snackbar
         open={isSnackbarOpen}
         autoHideDuration={3000}
-        onClose={() => setIsSnackbarOpen(false)}
+        onClose={closeSnackbar}
         message='변경 사항이 저장되었습니다.'
       />
     </>

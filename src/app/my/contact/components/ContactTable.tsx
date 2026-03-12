@@ -4,12 +4,13 @@ import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { Stack, Box, Typography, Pagination, Button, Divider } from '@mui/material'
 import dayjs from 'dayjs'
+import type { Contact } from '@/types'
 
 interface ContactTableProps {
   page: number
   onPageChange: (e: React.ChangeEvent, page: number) => void
   paginatedContact: {
-    data: any[]
+    data: Contact[]
     total: number
     limit: number
   }

@@ -19,6 +19,16 @@ export interface PreferenceForm {
   activityDaysPerWeek: PreferenceOption
 }
 
+export interface Contact {
+  id: string
+  title: string
+  content: string
+  status: ContactStatus
+  answer: string
+  createdAt: string
+  answeredAt: string
+}
+
 export interface SelectedPreference {
   label: string
   key: string
