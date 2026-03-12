@@ -2,7 +2,7 @@
 
 import { Component, ReactNode, ErrorInfo } from 'react'
 import { Box, Stack, Button } from '@mui/material'
-import { ErrorPhrase } from '@/components'
+import { ErrorPhrase } from '../Phrase'
 
 interface Props {
   children: ReactNode

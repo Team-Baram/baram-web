@@ -1,16 +1,15 @@
 'use client'
 
-import { Stack, Box, Divider } from '@mui/material'
+import { Stack, Divider } from '@mui/material'
 import { useIsRestoring } from '@tanstack/react-query'
-import { useFetchProfileQuery, useRedirectOnBoardingMutation } from '@/queries'
+import { useFetchProfileQuery } from '@/queries'
 import { Spinner } from '@/components'
 import ProfileForm from './ProfileForm'
 import PreferenceForm from './PreferenceForm'
 
 export default function ProfileSetting() {
   const isRestoring = useIsRestoring()
-  const { isLoading, isError, isSuccess, error, data } = useFetchProfileQuery()
-  //const redirectOnBoardingMutation = useRedirectOnBoardingMutation()
+  const { isLoading, isError, error, data } = useFetchProfileQuery()
 
   if (isRestoring || isLoading) {
     return <Spinner />
